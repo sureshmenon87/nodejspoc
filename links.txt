@@ -1,0 +1,36 @@
+http://stackoverflow.com/questions/20213902/convert-png-image-to-pdf-in-nodejs-canvas
+https://github.com/Automattic/node-canvas/blob/2354d9bb8c7d030ea85796541f0ff82d2207a611/examples/small-pdf.js
+http://www.feedhenry.com/server-side-pdf-generation-node-js/
+http://stackoverflow.com/questions/20956865/how-to-render-image-as-pdf-canvas-and-pdfkit
+https://www.npmjs.org/package/express-train
+
+https://github.com/yourdeveloper/node-imagemagick
+
+https://gist.github.com/rasmuswikman/1329466 pdf to png
+
+
+http://www.delarre.net/posts/installing-node-canvas-for-windows/
+http://stackoverflow.com/questions/10692075/which-library-should-i-use-for-server-side-image-manipulation-on-node-js
+
+ Imagemagick
+ 
+ http://stackoverflow.com/questions/11599357/resizing-images-with-nodejs-and-imagemagick base64
+ http://stackoverflow.com/questions/11703973/imagemagick-with-nodejs-not-working
+ https://github.com/aheckmann/gm
+ 
+ http://downloads.ghostscript.com/public/
+ http://stackoverflow.com/questions/6591011/imagemagick-errors-convert-pdf-to-images
+ http://www.imagemagick.org/discourse-server/viewtopic.php?f=1&t=22621
+ http://www.ghostscript.com/download/gsdnld.html
+ http://pastebin.com/PCnc6e7e base 64
+ 
+  
+http://www.html5rocks.com/en/tutorials/canvas/integrating/ canvas edit
+https://gist.github.com/rasmuswikman/1329466 pdf
+
+http://blog.teamtreehouse.com/reading-files-using-the-html5-filereader-api
+
+http://theburningmonk.com/2011/01/having-fun-with-html5-canvas-part-2/
+
+
+http://downloads.ghostscript.com/public/gs910w64.exe
