@@ -2,17 +2,7 @@ var express = require('express');
 var router = express.Router();
 var util = require('../controllers/UtilityController.js');
 var easyimg = require('easyimage');
-var im = require('imagemagick');
-var PDFDocument=require('pdfkit');
-//var gm = require('gm');
-//var im = require('gm').subClass({ imageMagick: true });
 var fs=require('fs');
-
-
-
-var util = require('util'),
-    exec = require('child_process').exec,
-    child;
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -38,18 +28,52 @@ router.post('/upload', function(req, res) {
 
 
   router.post('/base64',function(req,res){
+	var filename=req.body.filename;
+	util.base64ToImage(req,filename,'tmp',function(err,code){
+		if(!err){
+		
+			var output=filename.substr(0,filename.lastIndexOf('.'))+'.pdf';
+			util.formatConvert('tmp/'+filename,'tmp/pdf/'+output,function(err,code){
+					
+					if(err==null){
+					console.log("insdie if");
+						
+						fs.unlink('tmp/'+filename,function(err,data){
+						console.log("deleted");
+							if(!err){
+								util.formatConvert('tmp/pdf/'+output,'tmp/'+filename,function(err,code){
+								    console.log('formatConvert callback');
+									if(!err){
+									util.imageToBase64('tmp/'+filename,function(err,data){
+									console.log('imagetobase64 callback');
+									console.log(data);
+									res.send({'status':'200','base64':data})
+									});
+									}else{
+									res.send({'status':'-1'});
+									}
+								
+								});
+							}else{
+							res.send({'status':'-1'});
+							}
+						
+						});
+						
+					
+					}else{
+					res.send({'status':code})
+					}
+			
+			});
+		
+		}else{
+		res.send({'status':code})
+		}
   
-  console.dir(req.body.base64);
+  });
+     
   
-  var buf=new Buffer(req.body.base64, 'base64');
-  
-  fs.writeFile("out.png", buf, 'binary', function(err) {
-  console.log(err);
-  doc = new PDFDocument();
-  doc.image('out.png', 0, 15,300).text('Proprotional to width', 0, 0);
-
-  doc.pipe(fs.createWriteStream('output.pdf'));
-  doc.end();
 });
   
   /*util.saveFiletoDisk(req,function(err,path,filename){
@@ -58,7 +82,7 @@ router.post('/upload', function(req, res) {
   
   
   
-  });
+  
   
   
   

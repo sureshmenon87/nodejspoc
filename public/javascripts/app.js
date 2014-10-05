@@ -2,6 +2,7 @@
 
 var element = null;
 var context = null;
+var filename="default.png"
 
 $(document).ready(function () {
 
@@ -41,10 +42,7 @@ initialize();
             // clear the content of the canvas by resizing the element
             $("#btnClear").click(function () {
                 // remember the current line width
-                var currentWidth = context.lineWidth;
-
-                element.width = element.width;
-                context.lineWidth = currentWidth;
+                
             });
 
             // change the line width
@@ -107,9 +105,23 @@ function finishDrawing(mouseEvent, element, context) {
     $(element).unbind("mousemove").unbind("mouseup").unbind("mouseout");
 }
 
+
+
+function updateCanvas(obj){
+var currentWidth = context.lineWidth;
+
+                element.width = element.width;
+                context.lineWidth = currentWidth;
+var img = new Image();
+img.src = obj.base64;
+img.onload = function () {
+					context.drawImage(img,0,0,img.width,img.height);
+					}
+}
 function readURL(input) {
             if (input.files && input.files[0]) {
-                var reader = new FileReader();
+                filename=input.files[0].name;
+				var reader = new FileReader();
                 reader.onload = function (e) {
                     					
 					var img = new Image();
@@ -134,12 +146,17 @@ var mimeType = base64Image.split(';')[0];
 var base64 = (base64Image.split(',')[1]);
 var url = '/base64/';
 
-var params = {'mimeType':mimeType,'base64':base64};
+var params = {'mimeType':mimeType,'filename':filename,'base64':base64};
 
-$.post(url, params, function(json){
-   if (json.status == 'upload_ok')
+var posting=$.post(url, params);
+ posting.done(function(json){
+   console.log(json);
+   if (json.status == '200')
    {
-      //ok
+      alert('Uploaded');
+	  updateCanvas(json)
+   }else{
+      alert('Error occured');
    }
 },'application/json');
 }		

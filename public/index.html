@@ -4,14 +4,20 @@
 
 <script src="javascripts\jquery-2.1.1.min.js"></script>
 <script src="javascripts\app.js"></script>
+<link href="stylesheets\app.css" rel="stylesheet"></script>
 </head>
 <body>
 
+<div class="file_div">
+<input type="file" id="fileinput"><button id="upload" onclick="upload()">Upload</button></br>		
 
-<input type="file" id="fileinput"><br>
+</div>
+<div class="canvas_img">
 <canvas id="drawingCanvas" width="400" height="400" class="block"
         onSelectStart="this.style.cursor='crosshair'; return false;"></canvas>
-<button id="upload" onclick="upload()">Upload</button>		
+</div>
+
+
 
 
 </body>
